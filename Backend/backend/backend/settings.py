@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,6 +147,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
 
+# Email backend setting
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# SMTP settings for Gmail
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER=os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_PASS')
+EMAIL_USE_TLS=True
+
 
 from datetime import timedelta
 
@@ -166,7 +177,7 @@ SIMPLE_JWT = {
     'USER_ID_CLAIM': 'user_id',                       # Define the claim for the user ID in the JWT
 }
 
-
+PASSWORD_RESET_TIMEOUT=900  #900 sec=15min
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  # Your frontend URL
@@ -178,5 +189,8 @@ CORS_ALLOWED_ORIGINS = [
 
 # settings.py
 APPEND_SLASH = False
+
+
+
 
 

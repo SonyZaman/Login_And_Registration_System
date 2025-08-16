@@ -6,7 +6,7 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from account.utils import Util
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
-  # We are writing this becoz we need confirm password field in our Registratin Request
+  # confirm password field in our Registratin Request
   password2 = serializers.CharField(style={'input_type':'password'}, write_only=True)
   class Meta:
     model = User
